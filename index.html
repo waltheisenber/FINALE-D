@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hey Rochelle 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-color: #f5f0dc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fffaf0;
+      border: 2px solid #cbb994;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+    button {
+      background-color: #fdf6e3;
+      color: #4b3621;
+      border: 1px solid #a1865e;
+      padding: 10px 15px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .wax-seal {
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+    #letterContent {
+      white-space: pre-line;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="game">
+    <div id="question">Would you like to continue?</div>
+    <div id="options">
+      <button onclick="nextStep('yes')">Yes</button>
+      <button onclick="endGame()">No</button>
+    </div>
+  </div>
+
+  <script>
+    let step = 1;
+
+    function nextStep(answer) {
+      const q = document.getElementById('question');
+      const opt = document.getElementById('options');
+
+      if (step === 1 && answer === 'yes') {
+        q.innerText = 'Is your hobby eating?';
+        opt.innerHTML = `
+          <button onclick="nextStep('yes2')">Yes</button>
+          <button onclick="nextStep('no2')">No</button>`;
+        step++;
+      } else if (step === 2 && answer === 'yes2') {
+        q.innerText = 'Last question — pls hear me out Rochelle.';
+        opt.innerHTML = `
+          <button onclick="nextStep('yes3')">Yes</button>
+          <button onclick="endGame()">No</button>`;
+        step++;
+      } else if (step === 2 && answer === 'no2') {
+        q.innerText = 'Oh shucks, I was hoping so 😅 Would you like to go to the next question?';
+        opt.innerHTML = `
+          <button onclick="nextStep('yes3')">Yes</button>
+          <button onclick="endGame()">No</button>`;
+        step++;
+      } else if (step === 3 && answer === 'yes3') {
+        q.innerHTML = 'Tap the wax seal to read the letter 💌';
+        opt.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Wax_seal.svg" class="wax-seal" onclick="showLetter()" width="80">';
+        step++;
+      }
+    }
+
+    function endGame() {
+      const game = document.getElementById('game');
+      game.innerHTML = '<div>Oh... okay 😔 Maybe next time.</div>';
+    }
+
+    function showLetter() {
+      const game = document.getElementById('game');
+      game.innerHTML = `
+        <div><strong>To Rochelle 💌</strong></div>
+        <div id="letterContent">
+Hey Rochelle,
+
+Siguro nakita mo na 'tong message at na-click mo — salamat kasi binigyan mo ng oras.
+
+Matagal ko na talaga gustong sabihin 'to. Hindi madali, pero mas mahirap kung hindi ko sasabihin ngayon. Ayokong pagsisihan.
+
+Pwede ba kitang ligawan?
+
+Pangako, irerespeto kita, aalagaan, at susuportahan — lalo na sa mga panahon na mabigat ang lahat. Hindi lang ito salita; gusto kong ipakita sa’yo na seryoso ako.
+
+At kung sakaling may chance — kahit sobrang liit — nandito lang ako.  
+Kahit ang sagot mo ngayon ay “hindi pa,” okay lang. Hindi ako aalis.
+
+Maghihintay ako.  
+Maghihintay ako hanggang sa dumating yung panahon na bigla ka na lang magkaroon ng feelings para sa’kin. Kahit hindi mo agad napansin.
+
+Alam kong hindi agad dumarating ang totoong nararamdaman. Minsan dahan-dahan, tahimik, pero totoo.
+
+Hindi kita minamadali. Gusto ko lang malaman mong totoo ako — at sincere lahat ng ito.
+
+— Nathaniel
+        </div>`;
+    }
+  </script>
+</body>
+</html>
+
+
+
+
